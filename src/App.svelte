@@ -1,17 +1,20 @@
 <script>
-  let name = 'Hello Svelte!'
+  import {todos} from '~/store'
+  import CreateTodo from '~/components/CreateTodo'
+  import Todo from '~/components/Todo'
 </script>
-<h1>{name}</h1>
-<button class="btn btn-primary">
-  TEST!
-</button>
+
+<div class="container">
+  <CreateTodo />
+  <div class="todos">
+    {#each $todos as todo (todo.id)}
+      <Todo {todo} />
+    {/each}
+  </div>
+</div>
 
 <style lang="scss">
-  $color: red;
-  h1 {
-    color: $color;
-  }
-  .heropy {
-    color: red;
+  .todos {
+    padding: 20px 0;
   }
 </style>
